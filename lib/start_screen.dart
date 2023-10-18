@@ -5,6 +5,32 @@ class StartScreen extends StatelessWidget {
 
   @override
   Widget build(context) {
-    return const Text("Hello there!");
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            "assets/images/quiz-logo.png",
+            width: 300,
+          ),
+          const SizedBox(height: 80),
+          const Text(
+            "Learn Flutter fun way!",
+            style: TextStyle(
+              fontSize: 32,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(height: 30),
+          OutlinedButton(
+            onPressed: () => {},
+            style: OutlinedButton.styleFrom(
+              foregroundColor: Colors.white,
+            ),
+            child: const Text("Start Quiz"),
+          ),
+        ],
+      ),
+    );
   }
 }
