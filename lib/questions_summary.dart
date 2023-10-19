@@ -20,42 +20,44 @@ class QuestionsSummary extends StatelessWidget {
         child: Column(
           children: summaryData.map(
             (data) {
-              return Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CircleAvatar(
-                    backgroundColor: getAnswerColor(data),
-                    child: Text(
-                      ((data['question_index'] as int) + 1).toString(),
-                      style: const TextStyle(
-                        color: Colors.white,
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: getAnswerColor(data),
+                      child: Text(
+                        ((data['question_index'] as int) + 1).toString(),
+                        style: const TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 15),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          data['question'] as String,
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                        Text(
-                          data['user_answer'] as String,
-                          style: const TextStyle(
-                              color: Color.fromARGB(255, 255, 208, 164)),
-                        ),
-                        Text(
-                          data['correct_answer'] as String,
-                          style: const TextStyle(
-                              color: Color.fromARGB(255, 95, 153, 97)),
-                        ),
-                        const SizedBox(height: 25),
-                      ],
+                    const SizedBox(width: 15),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            data['question'] as String,
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            data['user_answer'] as String,
+                            style: const TextStyle(
+                                color: Color.fromARGB(255, 255, 208, 164)),
+                          ),
+                          Text(
+                            data['correct_answer'] as String,
+                            style: const TextStyle(
+                                color: Color.fromARGB(255, 95, 153, 97)),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               );
             },
           ).toList(),
