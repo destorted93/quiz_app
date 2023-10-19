@@ -5,29 +5,62 @@ class QuestionsSummary extends StatelessWidget {
 
   final List<Map<String, Object>> summaryData;
 
+  Color getAnswerColor(Map<String, Object> data) {
+    if (data['correct_answer'] == data['user_answer']) {
+      return const Color.fromARGB(255, 95, 153, 97);
+    }
+    return const Color.fromARGB(255, 247, 107, 97);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: summaryData.map(
-        (data) {
-          return Row(
-            children: [
-              Text(
-                ((data['question_index'] as int) + 1).toString(),
-              ),
-              Expanded(
-                child: Column(
-                  children: [
-                    Text(data['question'] as String),
-                    Text(data['user_answer'] as String),
-                    Text(data['correct_answer'] as String),
-                  ],
-                ),
-              ),
-            ],
-          );
-        },
-      ).toList(),
+    return SizedBox(
+      height: 300,
+      child: SingleChildScrollView(
+        child: Column(
+          children: summaryData.map(
+            (data) {
+              return Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    backgroundColor: getAnswerColor(data),
+                    child: Text(
+                      ((data['question_index'] as int) + 1).toString(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 15),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          data['question'] as String,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        Text(
+                          data['user_answer'] as String,
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 255, 208, 164)),
+                        ),
+                        Text(
+                          data['correct_answer'] as String,
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 95, 153, 97)),
+                        ),
+                        const SizedBox(height: 25),
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            },
+          ).toList(),
+        ),
+      ),
     );
   }
 }
